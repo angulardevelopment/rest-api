@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "rest-api"
+  "defaultProject": "rest-api",
+  "cli": {
+    "analytics": false
+  }
 }
