@@ -9,12 +9,12 @@ export class AbstractApiService <T> {
 
     constructor(private readonly http: HttpClient) { }
 
-    getAll(): Observable<T[]> {
-      return this.http.get<T[]>('');
+    getAll(url): Observable<T[]> {
+      return this.http.get<T[]>(url);
     }
 
-    getOne(): Observable<T> {
-      return this.http.get<T>('');
+    getOne(url): Observable<T> {
+      return this.http.get<T>(url);
     }
 
     create(data: T): Observable<T> {

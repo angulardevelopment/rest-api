@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { catchError, map } from 'rxjs/operators';
 
@@ -38,14 +38,43 @@ export class ApiService {
     // })
   }
 
-  postRequest(url, params = {}, headers = {}) {
-  return this.http.post(url, {params, headers }).pipe(
+  postRequest(url, data, params = {}, headers = {}) {
+  return this.http.post(url, data,{params, headers }).pipe(
     map((res: any) => res));
   }
   
+  putRequest(url, data, params = {}, headers = {}) {
+    return this.http.put(url, data,{params, headers }).pipe(
+      map((res: any) => res));
+    }
+
+    deleteRequest(url) {
+      return this.http.delete(url).pipe(
+        map((res: any) => res));
+      }
+    
 
   errorHandler(error: HttpErrorResponse) {
     return throwError(error.message || "server error.");
   }
 
+  // WITHOUT CACHE
+  // public getBeerList(): Observable<any> {
+  //   return this.http.get<any>('https://api.punkapi.com/v2/beers');
+  //   }
+  URL = 'https://api.punkapi.com/v2/beers';
+  public responseCache = new Map();
+  // with cache
+  public getBeerList(): Observable<any> {
+    const beersFromCache = this.responseCache.get(URL);
+    if (beersFromCache) {
+    return of(beersFromCache);
+    }
+    const response = this.http.get<any>(this.URL);
+    response.subscribe(beers => this.responseCache.set(URL, beers));
+    return response;
+    }
+
 }
+
+

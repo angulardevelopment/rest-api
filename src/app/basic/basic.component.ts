@@ -4,26 +4,18 @@ import { catchError, map } from "rxjs/operators";
 import { Observable, throwError } from 'rxjs';
 import { ApiService } from '../services/api.service';
 import { environment } from 'src/environments/environment';
+import { AbstractApiService } from '../services/abstract-api.service';
 @Component({
   selector: 'app-basic',
   templateUrl: './basic.component.html',
   styleUrls: ['./basic.component.scss']
 })
 export class BasicComponent implements OnInit {
-  // GET /posts
-// GET /posts/1
-// GET /posts/1/comments
-// GET /comments?postId=1
-// POST /posts
-// PUT /posts/1
-// PATCH /posts/1
-// DELETE /posts/1
-
-
-  constructor(private api: ApiService) { }
+  
+  constructor(private api: ApiService, private abstract: AbstractApiService<any>) { }
 
   ngOnInit(): void {
-    this.samplejson();
+
   }
   httpParamUsage() {
     let params = new HttpParams();
@@ -31,68 +23,122 @@ export class BasicComponent implements OnInit {
 
     // or
     let params2 = new HttpParams({
-      fromObject: { arr: [ "foo", "bar", "baz" ] },
-      });
+      fromObject: { arr: ["foo", "bar", "baz"] },
+    });
 
     // or
-      const params3 = new HttpParams()
-     .set("a", 'value1')
-     .set("b", 'value2')
-     .set("etc", 'valueEtc');
+    const params3 = new HttpParams()
+      .set("a", 'value1')
+      .set("b", 'value2')
+      .set("etc", 'valueEtc');
   }
 
 
   samplejson() {
-    this.api.getRequest("assets/package.json")
+    // this.api.getRequest("assets/package.json")
+    //   .subscribe(result => {
+    //     console.log(result);
+    //   });
+    this.abstract.getOne("assets/package.json")
       .subscribe(result => {
         console.log(result);
       });
   }
 
-  httpHeadersUsage(str: string, type = "artist", token: string) {
-    const headers = new HttpHeaders({ "Authorization": "Bearer " + token });
- 
-  }
 
-  getToken() {
-    var params = ("grant_type=client_credentials");
-    let headers = new HttpHeaders();
-    const encoded = '';
-    headers = headers.set("Authorization", "Basic " + encoded).set("Content-Type", "application/x-www-form-urlencoded");
-    // "https://accounts.spotify.com/api/token"
-  }
 
   doSearch(term: string) {
-      let apiURL = `${environment.apiRoot2}?term=${term}&media=music&limit=20`; 
-
+    let apiURL = `${environment.itunesUrl}?term=${term}&media=music&limit=20`;
+    this.api.getApi(apiURL).subscribe(res => {
+      console.log(res);
+    }, error => {
+      console.log(error)
+    });
   }
 
-  // getd(){
-  // this.api.getApi().subscribe(res =>{
-  //   console.log(res);
-  //   }, error => {
-  //   console.log(error)
-  //   });
-  // }
+//   GET /posts
+// GET /posts/1
+// GET /posts/1/comments
+// GET /comments?postId=1
+// POST /posts
+// PUT /posts/1
+// PATCH /posts/1
+// DELETE /posts/1
 
-}
-export interface Car {
-  brand: string;
-}
-
-
-
-interface UserResponse {
-  login: string;
-  bio: string;
-  company: string;
+getD(){
+  this.api.getRequest('https://jsonplaceholder.typicode.com/posts').subscribe(res => {
+    console.log(res);
+  }, error => {
+    console.log(error)
+  });
 }
 
-class SearchItem { constructor(public name: string, public artist: string, public link: string, public thumbnail: string, public artistId: string) { } }
+postD(){
+  const d: placeHolder = {
+
+    "title": "foo",
+    
+    "body": "bar",
+    
+    "userId": 678
+    
+    }
+  this.api.postRequest('https://jsonplaceholder.typicode.com/posts', d).subscribe(res => {
+    console.log(res);
+  }, error => {
+    console.log(error)
+  });
+}
+
+updateD(){
+  const id =1;
+  const d = {
+
+    "id": 1,
+    
+    "title": "foo",
+    
+    "body": "fsdfsd",
+    
+    "userId": 1
+    
+    }
+  this.api.putRequest(`https://jsonplaceholder.typicode.com/posts/${id}`, d).subscribe(res => {
+    console.log(res);
+  }, error => {
+    console.log(error)
+  });
+}
+
+deleteD(){
+  const id =1;
+  this.api.deleteRequest(`https://jsonplaceholder.typicode.com/posts/${id}`).subscribe(res => {
+    console.log(res);
+  }, error => {
+    console.log(error)
+  });
+}
+
+getcach(){
+  this.api.getBeerList().subscribe(res => {
+    console.log(res, 'res');
+    
+  });
+}
+
+
+}
 
 
 
 
+interface placeHolder{
+  "title": string;
 
+"body":string;
 
+"userId": number;
 
+"id"?: number;
+
+}

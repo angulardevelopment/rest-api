@@ -4,9 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL: "https://pixabay.com/api/?key=",
-  apiRoot2: 'https://itunes.apple.com/search',
-  spotifyUrl: "https://api.spotify.com/v1/search?query='+str+'&offset=0&limit=50&type='+type"
+  itunesUrl: 'https://itunes.apple.com/search',
 };
 
 /*

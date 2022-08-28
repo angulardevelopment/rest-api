@@ -4,15 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BasicComponent } from './basic/basic.component';
-import { MockApiComponent } from './mock-api/mock-api.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TestInterceptor } from './test.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BasicComponent,
-    MockApiComponent
+    BasicComponent
   ],
   imports: [
     BrowserModule,
