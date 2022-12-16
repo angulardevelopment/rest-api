@@ -10,7 +10,7 @@ import { catchError, map } from 'rxjs/operators';
 export class ApiService {
 
 
-  constructor(private http?: HttpClient) {
+  constructor(private http: HttpClient) {
 
   }
 
@@ -25,34 +25,34 @@ export class ApiService {
       }), catchError(this.errorHandler))
   }
 
-  getProm(apiURL){
-  return this.http.get(apiURL).toPromise()
-  // .then(
-  //   res => {
-  //     console.log(res)
-      // this.results = res['results'].map(item => { return new SearchItem(item.trackName, item.artistName, item.trackViewUrl, item.artworkUrl30, item.artistId); });
-      // this.results = res.json().results;           
-      // resolve();        },        
-      // msg => { // Error                   
-      // reject(msg);        }      );  });  return promise;}
+  getProm(apiURL) {
+    return this.http.get(apiURL).toPromise()
+    // .then(
+    //   res => {
+    //     console.log(res)
+    // this.results = res['results'].map(item => { return new SearchItem(item.trackName, item.artistName, item.trackViewUrl, item.artworkUrl30, item.artistId); });
+    // this.results = res.json().results;           
+    // resolve();        },        
+    // msg => { // Error                   
+    // reject(msg);        }      );  });  return promise;}
     // })
   }
 
   postRequest(url, data, params = {}, headers = {}) {
-  return this.http.post(url, data,{params, headers }).pipe(
-    map((res: any) => res));
-  }
-  
-  putRequest(url, data, params = {}, headers = {}) {
-    return this.http.put(url, data,{params, headers }).pipe(
+    return this.http.post(url, data, { params, headers }).pipe(
       map((res: any) => res));
-    }
+  }
 
-    deleteRequest(url) {
-      return this.http.delete(url).pipe(
-        map((res: any) => res));
-      }
-    
+  putRequest(url, data, params = {}, headers = {}) {
+    return this.http.put(url, data, { params, headers }).pipe(
+      map((res: any) => res));
+  }
+
+  deleteRequest(url) {
+    return this.http.delete(url).pipe(
+      map((res: any) => res));
+  }
+
 
   errorHandler(error: HttpErrorResponse) {
     return throwError(error.message || "server error.");
@@ -68,12 +68,12 @@ export class ApiService {
   public getBeerList(): Observable<any> {
     const beersFromCache = this.responseCache.get(URL);
     if (beersFromCache) {
-    return of(beersFromCache);
+      return of(beersFromCache);
     }
     const response = this.http.get<any>(this.URL);
     response.subscribe(beers => this.responseCache.set(URL, beers));
     return response;
-    }
+  }
 
 }
 

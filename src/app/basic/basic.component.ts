@@ -11,7 +11,7 @@ import { AbstractApiService } from '../services/abstract-api.service';
   styleUrls: ['./basic.component.scss']
 })
 export class BasicComponent implements OnInit {
-  
+
   constructor(private api: ApiService, private abstract: AbstractApiService<any>) { }
 
   ngOnInit(): void {
@@ -56,89 +56,89 @@ export class BasicComponent implements OnInit {
     });
   }
 
-//   GET /posts
-// GET /posts/1
-// GET /posts/1/comments
-// GET /comments?postId=1
-// POST /posts
-// PUT /posts/1
-// PATCH /posts/1
-// DELETE /posts/1
+  //   GET /posts
+  // GET /posts/1
+  // GET /posts/1/comments
+  // GET /comments?postId=1
+  // POST /posts
+  // PUT /posts/1
+  // PATCH /posts/1
+  // DELETE /posts/1
 
-getD(){
-  this.api.getRequest('https://jsonplaceholder.typicode.com/posts').subscribe(res => {
-    console.log(res);
-  }, error => {
-    console.log(error)
-  });
-}
+  getD() {
+    this.api.getRequest('https://jsonplaceholder.typicode.com/posts').subscribe(res => {
+      console.log(res);
+    }, error => {
+      console.log(error)
+    });
+  }
 
-postD(){
-  const d: placeHolder = {
+  postD() {
+    const d: placeHolder = {
 
-    "title": "foo",
-    
-    "body": "bar",
-    
-    "userId": 678
-    
+      "title": "foo",
+
+      "body": "bar",
+
+      "userId": 678
+
     }
-  this.api.postRequest('https://jsonplaceholder.typicode.com/posts', d).subscribe(res => {
-    console.log(res);
-  }, error => {
-    console.log(error)
-  });
-}
+    this.api.postRequest('https://jsonplaceholder.typicode.com/posts', d).subscribe(res => {
+      console.log(res);
+    }, error => {
+      console.log(error)
+    });
+  }
 
-updateD(){
-  const id =1;
-  const d = {
+  updateD() {
+    const id = 1;
+    const d = {
 
-    "id": 1,
-    
-    "title": "foo",
-    
-    "body": "fsdfsd",
-    
-    "userId": 1
-    
+      "id": 1,
+
+      "title": "foo",
+
+      "body": "fsdfsd",
+
+      "userId": 1
+
     }
-  this.api.putRequest(`https://jsonplaceholder.typicode.com/posts/${id}`, d).subscribe(res => {
-    console.log(res);
-  }, error => {
-    console.log(error)
-  });
+    this.api.putRequest(`https://jsonplaceholder.typicode.com/posts/${id}`, d).subscribe(res => {
+      console.log(res);
+    }, error => {
+      console.log(error)
+    });
+  }
+
+  deleteD() {
+    const id = 1;
+    this.api.deleteRequest(`https://jsonplaceholder.typicode.com/posts/${id}`).subscribe(res => {
+      console.log(res);
+    }, error => {
+      console.log(error)
+    });
+  }
+
+  getcach() {
+    this.api.getBeerList().subscribe(res => {
+      console.log(res, 'res');
+
+    });
+  }
+
+
 }
 
-deleteD(){
-  const id =1;
-  this.api.deleteRequest(`https://jsonplaceholder.typicode.com/posts/${id}`).subscribe(res => {
-    console.log(res);
-  }, error => {
-    console.log(error)
-  });
-}
-
-getcach(){
-  this.api.getBeerList().subscribe(res => {
-    console.log(res, 'res');
-    
-  });
-}
-
-
-}
 
 
 
-
-interface placeHolder{
+interface placeHolder {
   "title": string;
 
-"body":string;
+  "body": string;
 
-"userId": number;
+  "userId": number;
 
-"id"?: number;
+  "id"?: number;
 
 }
