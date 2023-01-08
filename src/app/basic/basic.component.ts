@@ -12,10 +12,20 @@ import { AbstractApiService } from '../services/abstract-api.service';
 })
 export class BasicComponent implements OnInit {
 
-  constructor(private api: ApiService, private abstract: AbstractApiService<any>) { }
+  constructor(private api: ApiService, private abstract: AbstractApiService<any>) { 
+    this.api.getRequest('https://jsonplaceholder.typicode.com/posts').subscribe(res => {
+      console.log(res);
+    }, error => {
+      console.log(error)
+    });
+  }
 
   ngOnInit(): void {
-
+    this.api.getRequest('https://jsonplaceholder.typicode.com/posts').subscribe(res => {
+      console.log(res);
+    }, error => {
+      console.log(error)
+    });
   }
   httpParamUsage() {
     let params = new HttpParams();
@@ -39,10 +49,10 @@ export class BasicComponent implements OnInit {
     //   .subscribe(result => {
     //     console.log(result);
     //   });
-    this.abstract.getOne("assets/package.json")
-      .subscribe(result => {
-        console.log(result);
-      });
+    // this.abstract.getOne("assets/package.json")
+    //   .subscribe(result => {
+    //     console.log(result);
+    //   });
   }
 
 
