@@ -12,12 +12,12 @@ import { AbstractApiService } from '../services/abstract-api.service';
 })
 export class BasicComponent implements OnInit {
 
-  constructor(private api: ApiService, private abstract: AbstractApiService<any>) { 
-    this.api.getRequest('https://jsonplaceholder.typicode.com/posts').subscribe(res => {
-      console.log(res);
-    }, error => {
-      console.log(error)
-    });
+  constructor(private api: ApiService, private abstract: AbstractApiService<any>) {
+    // this.api.getRequest('https://jsonplaceholder.typicode.com/posts').subscribe(res => {
+    //   console.log(res);
+    // }, error => {
+    //   console.log(error)
+    // });
   }
 
   ngOnInit(): void {

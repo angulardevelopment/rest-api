@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BasicComponent } from './basic/basic.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TestInterceptor } from './test.interceptor';
+import { LoggingInterceptor } from './logging.interceptor';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,8 @@ import { TestInterceptor } from './test.interceptor';
     provide: HTTP_INTERCEPTORS,
     useClass: TestInterceptor,
     multi: true
+    },   {
+      provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true
     }],
   bootstrap: [AppComponent]
 })
