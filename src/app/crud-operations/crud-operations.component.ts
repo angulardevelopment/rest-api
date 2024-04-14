@@ -6,11 +6,11 @@ import { ApiService } from '../services/api.service';
 import { environment } from 'src/environments/environment';
 import { AbstractApiService } from '../services/abstract-api.service';
 @Component({
-  selector: 'app-basic',
-  templateUrl: './basic.component.html',
-  styleUrls: ['./basic.component.scss']
+  selector: 'app-crud-operations',
+  templateUrl: './crud-operations.component.html',
+  styleUrls: ['./crud-operations.component.scss']
 })
-export class BasicComponent implements OnInit {
+export class CrudOperationsComponent implements OnInit {
 
   constructor(private api: ApiService, private abstract: AbstractApiService<any>) {
     // this.api.getRequest('https://jsonplaceholder.typicode.com/posts').subscribe(res => {

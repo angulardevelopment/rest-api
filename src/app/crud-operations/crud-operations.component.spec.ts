@@ -4,15 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import { ApiService } from '../services/api.service';
 
-import { BasicComponent } from './basic.component';
+import { CrudOperationsComponent } from './crud-operations.component';
 
-fdescribe('BasicComponent', () => {
-  let component: BasicComponent;
-  let fixture: ComponentFixture<BasicComponent>;
+fdescribe('CrudOperationsComponent', () => {
+  let component: CrudOperationsComponent;
+  let fixture: ComponentFixture<CrudOperationsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BasicComponent ],
+      declarations: [ CrudOperationsComponent ],
       providers: [ApiService],
       imports: [
         FormsModule,
@@ -23,7 +23,7 @@ fdescribe('BasicComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BasicComponent);
+    fixture = TestBed.createComponent(CrudOperationsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

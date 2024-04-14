@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BasicComponent } from './basic/basic.component';
+import { CrudOperationsComponent } from './crud-operations/crud-operations.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TestInterceptor } from './test.interceptor';
 import { LoggingInterceptor } from './logging.interceptor';
@@ -11,7 +11,7 @@ import { LoggingInterceptor } from './logging.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
-    BasicComponent
+    CrudOperationsComponent
   ],
   imports: [
     BrowserModule,
