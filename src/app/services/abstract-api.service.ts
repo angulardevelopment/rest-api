@@ -1,23 +1,34 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { forwardRef, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AbstractApiService <T> {
+import { CarService } from './car.service';
+// Base service
+@Injectable(
+  {
+  providedIn: 'root',
+  useClass: forwardRef( () => CarService ) // Default implementation.
 
-    constructor(private readonly http: HttpClient) { }
+}
+)
+export abstract class AbstractApiService <T> {
 
-    getAll(url): Observable<T[]> {
-      return this.http.get<T[]>(url);
-    }
+    constructor(public readonly http: HttpClient) { }
 
-    getOne(url): Observable<T> {
-      return this.http.get<T>(url);
-    }
+    // getAll(url): Observable<T[]> {
+    //   return this.http.get<T[]>(url);
+    // }
 
-    create(data: T): Observable<T> {
-      return this.http.post<T>('', data);
-    }
+    // getOne(url): Observable<T> {
+    //   return this.http.get<T>(url);
+    // }
+
+    // create(data: T): Observable<T> {
+    //   return this.http.post<T>('', data);
+    // }
+
+      public abstract getAll(url): Observable<T[]>;
+      public abstract getOne(url): Observable<T[]>;
+      public abstract create(url): Observable<T>;
+
 }

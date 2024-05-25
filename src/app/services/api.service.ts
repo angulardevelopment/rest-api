@@ -8,8 +8,7 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ApiService {
-  URL = 'https://api.punkapi.com/v2/beers';
-  public responseCache = new Map();
+
 
   constructor(private http: HttpClient) {
 
@@ -32,9 +31,9 @@ export class ApiService {
     //   res => {
     //     console.log(res)
     // this.results = res['results'].map(item => { return new SearchItem(item.trackName, item.artistName, item.trackViewUrl, item.artworkUrl30, item.artistId); });
-    // this.results = res.json().results;
-    // resolve();        },
-    // msg => { // Error
+    // this.results = res.json().results;           
+    // resolve();        },        
+    // msg => { // Error                   
     // reject(msg);        }      );  });  return promise;}
     // })
   }
@@ -63,7 +62,8 @@ export class ApiService {
   // public getBeerList(): Observable<any> {
   //   return this.http.get<any>('https://api.punkapi.com/v2/beers');
   //   }
-
+  URL = 'https://api.punkapi.com/v2/beers';
+  public responseCache = new Map();
   // with cache
   public getBeerList(): Observable<any> {
     const beersFromCache = this.responseCache.get(URL);

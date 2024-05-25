@@ -13,7 +13,7 @@ export class TestInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log(request, 'test intercept');
+    // console.log(request, 'request');
     return next.handle(request)
     .pipe(
     retry(1),
