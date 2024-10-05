@@ -11,8 +11,8 @@ import { AbstractApiService } from '../services/abstract-api.service';
   styleUrls: ['./crud-operations.component.scss']
 })
 export class CrudOperationsComponent implements OnInit {
-
-  constructor(private api: ApiService, private abstract: AbstractApiService<any>) {
+  // private abstract: AbstractApiService<any>
+  constructor(private api: ApiService) {
     // this.api.getRequest('https://jsonplaceholder.typicode.com/posts').subscribe(res => {
     //   console.log(res);
     // }, error => {
@@ -21,12 +21,17 @@ export class CrudOperationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+  }
+
+  fdgzdf(){
     this.api.getRequest('https://jsonplaceholder.typicode.com/posts').subscribe(res => {
       console.log(res);
     }, error => {
       console.log(error)
     });
   }
+
   httpParamUsage() {
     let params = new HttpParams();
     params = params.append("key", "18053707");
