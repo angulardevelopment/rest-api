@@ -8,12 +8,12 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ApiService {
-
-
   constructor(private http: HttpClient) {
-
   }
 
+  URL = 'https://api.punkapi.com/v2/beers';
+  public responseCache = new Map();
+  
   getApi(apiUrl, param?): Observable<any> {
     return this.http.get<any>(apiUrl, param);
   }
@@ -25,7 +25,7 @@ export class ApiService {
       }), catchError(this.errorHandler))
   }
 
-  getProm(apiURL) {
+  getPromise(apiURL) {
     return this.http.get(apiURL).toPromise()
     // .then(
     //   res => {
@@ -58,12 +58,11 @@ export class ApiService {
     return throwError(error.message || "server error.");
   }
 
-  // WITHOUT CACHE
-  // public getBeerList(): Observable<any> {
-  //   return this.http.get<any>('https://api.punkapi.com/v2/beers');
-  //   }
-  URL = 'https://api.punkapi.com/v2/beers';
-  public responseCache = new Map();
+  public getBeerListWITHOUTCACHE(): Observable<any> {
+    return this.http.get<any>('https://api.punkapi.com/v2/beers');
+    }
+
+
   // with cache
   public getBeerList(): Observable<any> {
     const beersFromCache = this.responseCache.get(URL);

@@ -28,16 +28,7 @@ export class BasicComponent implements OnInit {
     this.samplejson();
   }
 
-  test() {
-    this.api.getRequest('https://jsonplaceholder.typicode.com/posts').subscribe(
-      (res) => {
-        console.log(res);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
+
 
   httpParamUsage() {
     let params = new HttpParams();
@@ -86,7 +77,7 @@ export class BasicComponent implements OnInit {
   // PATCH /posts/1
   // DELETE /posts/1
 
-  getD() {
+  getData() {
     this.api.getRequest('https://jsonplaceholder.typicode.com/posts').subscribe(
       (res) => {
         console.log(res);
@@ -97,7 +88,7 @@ export class BasicComponent implements OnInit {
     );
   }
 
-  postD() {
+  postData() {
     const d: placeHolder = {
       title: 'foo',
 
@@ -117,7 +108,7 @@ export class BasicComponent implements OnInit {
       );
   }
 
-  updateD() {
+  updateData() {
     const id = 1;
     const d = {
       id: 1,
@@ -140,7 +131,7 @@ export class BasicComponent implements OnInit {
       );
   }
 
-  deleteD() {
+  deleteData() {
     const id = 1;
     this.api
       .deleteRequest(`https://jsonplaceholder.typicode.com/posts/${id}`)
@@ -154,7 +145,7 @@ export class BasicComponent implements OnInit {
       );
   }
 
-  getcach() {
+  getCacheData() {
     this.api.getBeerList().subscribe((res) => {
       console.log(res, 'res');
     });
